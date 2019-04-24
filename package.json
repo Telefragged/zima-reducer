@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "lib/zimaReducer.js",
   "types": "lib/zimaReducer.d.ts",
-  "repository": "https://github.com/telefragged/zimaReducer",
+  "repository": "https://github.com/telefragged/zima-reducer",
   "author": "Vetle Brænd",
   "license": "MIT",
   "files": [
