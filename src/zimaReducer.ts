@@ -6,7 +6,7 @@ type WithDispatchSignature<T, S> = {
     [P in keyof T]: T[P] extends (state: S, ...args: infer A) => unknown ? (...args: A) => void : never;
 };
 
-type ActionReducer<S> = {
+interface IActionReducer<S> {
     reduce: (state: S) => S;
 }
 
@@ -15,7 +15,7 @@ function zimaReducer<
     T extends {
         [P in keyof T]: CheckDispatchSignature<T[P], S>
     }>(obj: T, initialState: S): [S, WithDispatchSignature<T, S>] {
-    const reducerFunction = (state: S, action: ActionReducer<S>) => action.reduce(state);
+    const reducerFunction = (currentState: S, action: IActionReducer<S>) => action.reduce(currentState);
 
     const [state, dispatch] = useReducer(reducerFunction, initialState);
 
@@ -29,7 +29,7 @@ function zimaReducer<
         type arguments = Parameters<typeof reduceFn>;
         actionDispatcher[k] = (...args: arguments) => {
             const reducerObject = {
-                reduce: (state: S) => reduceFn(state, ...args),
+                reduce: (currentState: S) => reduceFn(currentState, ...args),
             };
 
             dispatch(reducerObject);
