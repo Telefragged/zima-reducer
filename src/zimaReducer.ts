@@ -1,7 +1,5 @@
 import { useReducer } from 'react';
 
-type GetArguments<F extends Function> = F extends (...args: infer A) => any ? A : never;
-
 type CheckDispatchSignature<T, S> = T extends (state: S, ...args: any[]) => S ? T : never;
 
 type WithDispatchSignature<T, S> = {
@@ -28,7 +26,7 @@ function zimaReducer<
             continue;
         }
         const reduceFn = (obj as any)[k] as T[keyof T];
-        type arguments = GetArguments<typeof reduceFn>;
+        type arguments = Parameters<typeof reduceFn>;
         actionDispatcher[k] = (...args: arguments) => {
             const reducerObject = {
                 reduce: (state: S) => reduceFn(state, ...args),
