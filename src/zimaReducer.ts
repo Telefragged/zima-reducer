@@ -4,10 +4,12 @@ type GetArguments<F extends Function> = F extends (...args: infer A) => any ? A 
 
 type CheckDispatchSignature<T, S> = T extends (state: S, ...args: any[]) => S ? T : never;
 
-type WithDispatchSignature<T, S> = { [P in keyof T]: T[P] extends (state: S, ...args: infer A) => unknown ? (...args: A) => void : never; }
+type WithDispatchSignature<T, S> = {
+    [P in keyof T]: T[P] extends (state: S, ...args: infer A) => unknown ? (...args: A) => void : never;
+};
 
 type ActionReducer<S> = {
-    reduce: (state: S) => S
+    reduce: (state: S) => S;
 }
 
 function zimaReducer<
@@ -29,11 +31,11 @@ function zimaReducer<
         type arguments = GetArguments<typeof reduceFn>;
         actionDispatcher[k] = (...args: arguments) => {
             const reducerObject = {
-                reduce: (state: S) => reduceFn(state, ...args)
-            }
+                reduce: (state: S) => reduceFn(state, ...args),
+            };
 
             dispatch(reducerObject);
-        }
+        };
     }
 
     return [state, actionDispatcher] as [S, WithDispatchSignature<T, S>];
