@@ -45,7 +45,7 @@ export const ExampleComponent: React.FunctionComponent = () => {
             type='number'
             value={state.value}
             onChange={(evt) => dispatch({ kind: 'changeValue', value: evt.target.valueAsNumber })} />
-        <button onClick={() => dispatch({ kind: 'toggle' })}>{state.enabled ? "Disable" : "Enable"}</button>
+        <button onClick={() => dispatch({ kind: 'toggle' })}>{state.enabled ? 'Disable' : 'Enable'}</button>
     </>)
 };
 ```
@@ -75,7 +75,7 @@ export const ExampleComponent: React.FunctionComponent = () => {
             type='number'
             value={state.value}
             onChange={(evt) => dispatch.changeValue(evt.target.valueAsNumber)} />
-        <button onClick={() => dispatch.toggle()}>{state.enabled ? "Disable" : "Enable"}</button>
+        <button onClick={() => dispatch.toggle()}>{state.enabled ? 'Disable' : 'Enable'}</button>
     </>)
 };
 ```
