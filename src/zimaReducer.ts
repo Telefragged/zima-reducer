@@ -22,7 +22,7 @@ function zimaReducer<
     const actionDispatcher: any = {};
 
     for (const k in obj) {
-        if(!obj.hasOwnProperty(k)) {
+        if (!obj.hasOwnProperty(k)) {
             continue;
         }
         const reduceFn = (obj as any)[k] as T[keyof T];
