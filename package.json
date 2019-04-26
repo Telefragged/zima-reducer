@@ -1,6 +1,6 @@
 {
   "name": "zima-reducer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "lib/zimaReducer.js",
   "types": "lib/zimaReducer.d.ts",
   "repository": "https://github.com/telefragged/zima-reducer",
